@@ -15,6 +15,7 @@ var (
 
 type IDynamic interface {
 	Init(cfg *config.Config) error
+	Name() string
 	Run()
 }
 

@@ -2,10 +2,10 @@ package mode
 
 import (
 	"dynamic-game/config"
-	"log"
 )
 
 type Pool struct {
+	name string
 }
 
 func NewPool() *Pool {
@@ -14,10 +14,14 @@ func NewPool() *Pool {
 }
 
 func (p *Pool) Init(cfg *config.Config) error {
-	log.Println("pool init ok")
+	p.name = cfg.Mode
 	return nil
 }
 
 func (p *Pool) Run() {
 
+}
+
+func (p *Pool) Name() string {
+	return p.name
 }

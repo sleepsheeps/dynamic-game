@@ -8,12 +8,12 @@ import (
 
 func main() {
 	cfg := &config.Config{}
-	cfg.Mode = "pool"
+	cfg.Mode = "POOL"
 	s := &server.Server{}
 	err := s.Start(cfg)
 	if err != nil {
 		log.Fatal("dynamic server start error: ", err)
 		return
 	}
-	log.Println("dynamic server start ok")
+	log.Println(s.Name(), "dynamic server start ok")
 }

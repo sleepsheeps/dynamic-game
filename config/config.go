@@ -1,7 +1,7 @@
 package config
 
 const (
-	MODE_ALLOCATE = "ALLOPCATE"
+	MODE_ALLOCATE = "ALLOCATE"
 	MODE_POOL     = "POOL"
 )
 
