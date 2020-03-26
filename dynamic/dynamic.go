@@ -2,7 +2,7 @@ package dynamic
 
 import (
 	"dynamic-game/config"
-	"dynamic-game/mode"
+	"dynamic-game/dynamic/mode"
 )
 
 func init() {

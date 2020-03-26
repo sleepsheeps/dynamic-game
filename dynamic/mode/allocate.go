@@ -2,7 +2,6 @@ package mode
 
 import (
 	"dynamic-game/config"
-	"log"
 )
 
 type Allocate struct {
@@ -10,7 +9,6 @@ type Allocate struct {
 }
 
 func (a *Allocate) Init(cfg *config.DynamicConfig) error {
-	log.Println("allocate init ok")
 	a.name = cfg.Mode
 	return nil
 }
