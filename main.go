@@ -7,10 +7,13 @@ import (
 )
 
 func main() {
-	cfg := &config.Config{}
-	cfg.Mode = "POOL"
+	err := config.Config.LoadConfig()
+	if err != nil {
+		log.Fatal("load config error: ", err)
+		return
+	}
 	s := &server.Server{}
-	err := s.Start(cfg)
+	err = s.Start(config.Config)
 	if err != nil {
 		log.Fatal("dynamic server start error: ", err)
 		return

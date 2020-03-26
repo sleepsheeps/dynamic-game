@@ -11,11 +11,11 @@ type Server struct {
 	dynamic.IDynamic
 }
 
-func (s *Server) Start(config *config.Config) error {
+func (s *Server) Start(config *config.DynamicConfig) error {
 	// 初始化日志格式
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
 	// 初始化redis
-	err := utils.InitCache(":6379")
+	err := utils.InitCache(config.Redis_ADDRESS)
 	if err != nil {
 		return err
 	}

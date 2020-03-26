@@ -14,7 +14,7 @@ var (
 )
 
 type IDynamic interface {
-	Init(cfg *config.Config) error
+	Init(cfg *config.DynamicConfig) error
 	Name() string
 	Run()
 }
@@ -25,6 +25,6 @@ func registerMgr() {
 	dynamicMgr[config.MODE_POOL] = mode.NewPool()
 }
 
-func GetIDynamic(config2 *config.Config) IDynamic {
+func GetIDynamic(config2 *config.DynamicConfig) IDynamic {
 	return dynamicMgr[config2.Mode]
 }

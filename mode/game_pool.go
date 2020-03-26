@@ -13,7 +13,7 @@ func NewPool() *Pool {
 	return p
 }
 
-func (p *Pool) Init(cfg *config.Config) error {
+func (p *Pool) Init(cfg *config.DynamicConfig) error {
 	p.name = cfg.Mode
 	return nil
 }

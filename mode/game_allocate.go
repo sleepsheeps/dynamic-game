@@ -9,7 +9,7 @@ type Allocate struct {
 	name string
 }
 
-func (a *Allocate) Init(cfg *config.Config) error {
+func (a *Allocate) Init(cfg *config.DynamicConfig) error {
 	log.Println("allocate init ok")
 	a.name = cfg.Mode
 	return nil
