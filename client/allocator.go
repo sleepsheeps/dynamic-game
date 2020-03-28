@@ -1,15 +1,10 @@
-package allocator
+package client
 
 import (
 	"dynamic-game/config"
 	"io/ioutil"
 	"net/http"
 	"strings"
-)
-
-const (
-	HEADER_FLEET     = "Fleet"
-	HEADER_NAMESPACE = "NameSpace"
 )
 
 func getHttpClient() *http.Client {
@@ -36,7 +31,7 @@ func RequestAllocate() (statusCode int, serverID, version string, err error) {
 	}
 	defer resp.Body.Close()
 	statusCode = resp.StatusCode
-	serverID = resp.Header.Get("name")
+	serverID = resp.Header.Get("serverID")
 	version = resp.Header.Get("version")
 	return
 }
@@ -80,7 +75,7 @@ func RequestImageVersion() (statusCode int, version string, err error) {
 func RequestGameVersion(name string) (statusCode int, version string, err error) {
 	url := getURL()
 	client := getHttpClient()
-	urlHandle := url + "/" + HANDLE_GAME_VERSION
+	urlHandle := url + "/" + HANDLE_GS_VERSION
 	req, _ := http.NewRequest("GET", urlHandle, strings.NewReader("name= cbj"))
 	req.Header.Set(HEADER_NAMESPACE, config.Config.NameSpace)
 	req.Header.Set("Name", name)
