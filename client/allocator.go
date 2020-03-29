@@ -8,7 +8,6 @@ import (
 )
 
 func getHttpClient() *http.Client {
-	//获取一个http客户端
 	c := &http.Client{}
 	return c
 }

@@ -1,0 +1,13 @@
+syntax="proto3"; //版本号
+package proto;  //包名
+import "google/protobuf/descriptor.proto";
+option go_package = "dynamic-game/proto/helper;helper";
+
+extend google.protobuf.MessageOptions {
+    MsgType msgType = 70001;
+}
+
+enum MsgType {
+     INVALID = 0;
+     T_Student =1;
+}

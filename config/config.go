@@ -1,6 +1,8 @@
 package config
 
-import "errors"
+import (
+	"errors"
+)
 
 const (
 	MODE_ALLOCATE = "ALLOCATE"
@@ -12,6 +14,7 @@ func init() {
 }
 
 type DynamicConfig struct {
+	ServerID       string
 	Replicas       int
 	Limit          int
 	Mode           string
@@ -20,6 +23,7 @@ type DynamicConfig struct {
 	FleetName      string
 	NameSpace      string
 	Allocator_Addr string
+	MQ             string
 }
 
 var Config *DynamicConfig
@@ -30,5 +34,7 @@ func (c *DynamicConfig) LoadConfig() error {
 	}
 	c.Mode = "POOL"
 	c.Redis_ADDRESS = ":6379"
+	c.MQ = "0.0.0.0:4222"
+	c.ServerID = "test"
 	return nil
 }
