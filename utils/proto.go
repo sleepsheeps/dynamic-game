@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"dynamic-game/config"
 	"dynamic-game/proto/helper"
 	"github.com/golang/protobuf/proto"
 )
@@ -31,7 +30,7 @@ func RegisterMsg(msgType helper.MsgType, f RegisterFunc) {
 }
 
 func SendMsg(serverID string, msgType helper.MsgType, msg proto.Message) {
-	m := ProtoMsg{
+	m := &ProtoMsg{
 		MsgType: int32(msgType),
 		Msg:     msg,
 	}
@@ -44,7 +43,6 @@ type MsgManager struct {
 
 func (m *MsgManager) register(msgType helper.MsgType, f RegisterFunc) {
 	m.msgMap[msgType] = f
-	mq.register(config.Config.ServerID)
 }
 
 func (m *MsgManager) findFunc(msgType helper.MsgType) RegisterFunc {
