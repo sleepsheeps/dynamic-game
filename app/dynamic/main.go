@@ -5,6 +5,7 @@ import (
 	"dynamic-game/dynamic"
 	"dynamic-game/utils"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -26,7 +27,6 @@ func main() {
 	// 初始化dynamic-server
 	server := dynamic.GetIDynamic(config.Config)
 	server.Init(config.Config)
-	log.Println(server.Name(), "dynamic server start ok")
-	start := make(chan struct{})
-	<-start
+	log.Println(server.Name(), "dynamic server init ok")
+	http.ListenAndServe(":8089", nil)
 }
