@@ -23,13 +23,6 @@ func main() {
 		return
 	}
 	log.Println("cache init ok")
-	// 初始化mq
-	err = utils.StartMQ(config.Config.MQ)
-	if err != nil {
-		log.Fatal("start mq error", err)
-		return
-	}
-	log.Println("mq start ok")
 	// 初始化dynamic-server
 	server := dynamic.GetIDynamic(config.Config)
 	server.Init(config.Config)
