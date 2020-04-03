@@ -1,4 +1,4 @@
-package client
+package allocator
 
 const (
 	HANDLE_ALLOCATE   = "allocator"

@@ -1,8 +1,13 @@
-package mode
+package allocate
 
 import (
 	"dynamic-game/config"
 )
+
+func NewAllocate() *Allocate {
+	a := &Allocate{}
+	return a
+}
 
 type Allocate struct {
 	name string
@@ -21,7 +26,6 @@ func (a *Allocate) Name() string {
 	return a.name
 }
 
-func NewAllocate() *Allocate {
-	a := &Allocate{}
-	return a
+func (a *Allocate) Monitor() {
+
 }

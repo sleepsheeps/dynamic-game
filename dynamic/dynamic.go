@@ -2,7 +2,8 @@ package dynamic
 
 import (
 	"dynamic-game/config"
-	"dynamic-game/dynamic/mode"
+	"dynamic-game/dynamic/allocate"
+	"dynamic-game/dynamic/pool"
 )
 
 func init() {
@@ -21,8 +22,8 @@ type IDynamic interface {
 
 func registerMgr() {
 	dynamicMgr = make(map[string]IDynamic)
-	dynamicMgr[config.MODE_ALLOCATE] = mode.NewAllocate()
-	dynamicMgr[config.MODE_POOL] = mode.NewPool()
+	dynamicMgr[config.MODE_ALLOCATE] = allocate.NewAllocate()
+	dynamicMgr[config.MODE_POOL] = pool.NewPool()
 }
 
 func GetIDynamic(config2 *config.DynamicConfig) IDynamic {

@@ -1,4 +1,4 @@
-package mode
+package pool
 
 import (
 	"dynamic-game/config"
@@ -15,6 +15,7 @@ func NewPool() *Pool {
 
 func (p *Pool) Init(cfg *config.DynamicConfig) error {
 	p.name = cfg.Mode
+
 	return nil
 }
 
