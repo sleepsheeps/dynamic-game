@@ -5,7 +5,6 @@ import (
 	"dynamic-game/dynamic"
 	"dynamic-game/utils"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -26,7 +25,16 @@ func main() {
 	log.Println("cache init ok")
 	// 初始化dynamic-server
 	server := dynamic.GetIDynamic(config.Config)
-	server.Init(config.Config)
+	err = server.Init(config.Config)
+	if err != nil {
+		log.Println("server init error", err)
+		return
+	}
 	log.Println(server.Name(), "dynamic server init ok")
-	http.ListenAndServe(":8089", nil)
+	err = server.Run()
+	if err != nil {
+		log.Println("server run error", err)
+		return
+	}
+	log.Println("server run ok")
 }

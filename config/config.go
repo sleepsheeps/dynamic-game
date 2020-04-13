@@ -23,7 +23,7 @@ type DynamicConfig struct {
 	FleetName      string
 	NameSpace      string
 	Allocator_Addr string
-	MQ             string
+	ServerAddr     string
 }
 
 var Config *DynamicConfig
@@ -32,9 +32,9 @@ func (c *DynamicConfig) LoadConfig() error {
 	if c == nil {
 		return errors.New("config struct is nil")
 	}
-	c.Mode = "POOL"
+	c.Mode = "ALLOCATE"
 	c.Redis_ADDRESS = ":6379"
-	c.MQ = "0.0.0.0:4222"
+	c.ServerAddr = "0.0.0.0:8081"
 	c.ServerID = "test"
 	return nil
 }

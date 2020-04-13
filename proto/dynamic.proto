@@ -1,0 +1,16 @@
+syntax = "proto3";  //protobuf3协议
+package dynamic;
+option go_package = "dynamic-game/proto/dynamic;dynamic";
+
+message GAllocateServer{
+    repeated int32 requestID=1;
+}
+
+message AAllocateServer{
+     repeated int32 requestID=1;
+     repeated string serverID=2;
+}
+
+service AllocateService{
+     rpc Allocate (GAllocateServer) returns (AAllocateServer);
+}

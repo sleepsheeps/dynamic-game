@@ -17,7 +17,7 @@ var (
 type IDynamic interface {
 	Init(cfg *config.DynamicConfig) error
 	Name() string
-	Run()
+	Run() error
 }
 
 func registerMgr() {

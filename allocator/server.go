@@ -5,7 +5,7 @@ import (
 	allocationv1 "agones.dev/agones/pkg/apis/allocation/v1"
 	"agones.dev/agones/pkg/client/clientset/versioned"
 	"agones.dev/agones/pkg/util/runtime"
-	"dynamic-game/client"
+	dallocator "dynamic-game/client/allocator"
 	"errors"
 	"io"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -45,11 +45,11 @@ func (a *Allocator) start() {
 }
 
 func (a *Allocator) registerHandle() {
-	http.HandleFunc("/"+client.HANDLE_HEALTHZ, a.handleHealthz)
-	http.HandleFunc("/"+client.HANDLE_ALLOCATE, getOnly(a.handleAllocator))
-	http.HandleFunc("/"+client.HANDLE_DELETE, deleteOnly(a.handleDelete))
-	http.HandleFunc("/"+client.HANDLE_VERSION, getOnly(a.handleVersion))
-	http.HandleFunc("/"+client.HANDLE_GS_VERSION, getOnly(a.handleGSVersion))
+	http.HandleFunc("/"+dallocator.HANDLE_HEALTHZ, a.handleHealthz)
+	http.HandleFunc("/"+dallocator.HANDLE_ALLOCATE, getOnly(a.handleAllocator))
+	http.HandleFunc("/"+dallocator.HANDLE_DELETE, deleteOnly(a.handleDelete))
+	http.HandleFunc("/"+dallocator.HANDLE_VERSION, getOnly(a.handleVersion))
+	http.HandleFunc("/"+dallocator.HANDLE_GS_VERSION, getOnly(a.handleGSVersion))
 }
 
 func (a *Allocator) handleHealthz(w http.ResponseWriter, r *http.Request) {
@@ -62,8 +62,8 @@ func (a *Allocator) handleHealthz(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *Allocator) handleAllocator(w http.ResponseWriter, r *http.Request) {
-	fleet := r.Header.Get(client.HEADER_FLEET)
-	namespace := r.Header.Get(client.HEADER_NAMESPACE)
+	fleet := r.Header.Get(dallocator.HEADER_FLEET)
+	namespace := r.Header.Get(dallocator.HEADER_NAMESPACE)
 	if fleet == "" || namespace == "" {
 		http.Error(w, "allocate fleet or namespace is nil", http.StatusNotFound)
 	}
